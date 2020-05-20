@@ -6,9 +6,10 @@ import { createStackNavigator } from '@react-navigation/stack'
 import reducer from './reducers'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import Deck from './components/Deck'
-import Quiz from './components/Quiz'
+import DeckTab from './components/DeckTab'
+import QuizTab from './components/QuizTab'
 import DeckDetail from './components/DeckDetail'
+import Quiz from './components/Quiz'
 import { MaterialCommunityIcons, Octicons } from "@expo/vector-icons";
 import { primaryColor, white, lightGray, lightPurple } from './utils/colors'
 import Constants from 'expo-constants';
@@ -31,8 +32,8 @@ function MainTabs() {
         showLabel: false
       }}>
       <Tab.Screen 
-        name="Deck"
-        component={Deck}
+        name="DeckTab"
+        component={DeckTab}
         options={{
           tabBarIcon: ({ color, size }) =>(
             <MaterialCommunityIcons name="cards" size={size} color={color} />
@@ -40,8 +41,9 @@ function MainTabs() {
         }}
       />
       <Tab.Screen
-        name="Quiz"
-        component={Quiz}
+        name="QuizTab"
+        component={QuizTab}
+        headerShown={false}
         options={{
           tabBarIcon: ({ color, size }) =>(
             <Octicons name="checklist" size={size} color={color} />
@@ -57,7 +59,7 @@ function MainStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Tabs"
+        name="MainTabs"
         component={MainTabs}
         options={{
           headerShown: false,
@@ -72,8 +74,18 @@ function MainStack() {
           headerTintColor: white,
           headerStyle: {
             backgroundColor: primaryColor
-          }, 
-          
+          }
+      }}/>
+      <Stack.Screen
+        name="Quiz"
+        component={Quiz}
+        options={{
+          headerStatusBarHeight: 0,
+          headerBackTitle: 'Back',
+          headerTintColor: white,
+          headerStyle: {
+            backgroundColor: primaryColor
+          }
         }}/>
     </Stack.Navigator>
   )

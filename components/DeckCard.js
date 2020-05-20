@@ -33,7 +33,7 @@ export default DeckCard
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1/2, 
+    flex: 1, 
     flexDirection: 'column', 
     margin: 10,
     paddingTop: 15, 

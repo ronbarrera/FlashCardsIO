@@ -8,45 +8,31 @@ import {
   View
 } from "react-native"
 import { connect } from 'react-redux'
-import { addDeck } from '../actions'
+import { addCard } from '../actions'
 import { primaryColor } from "../utils/colors";
 import { Title, TextInput, Button, IconButton } from 'react-native-paper';
-import { submitDeck, fetchDeckResults } from '../utils/api'
+import { submitCard } from '../utils/api'
 
 
-const AddDeck = (props) => {
-  const [deckName, setDeckName] = useState('');
-  const { modalVisible, setModalVisible, handleSubmitDeck } = props
+const AddCard = (props) => {
+  const [question, setQuestion] = useState('')
+  const [answer, setAnswer] = useState('')
+  const { modalVisible, setModalVisible } = props
 
   function closeModal() {
-    setDeckName('')
+    setQuestion('')
+    setAnswer('')
     setModalVisible(false)
   }
 
   function handleSubmit() {
-    // Create Empty Deck
-    const deckId = deckName.trim()
-    const deck = {
-      title: deckId, 
-      created: Date.now(), 
-      questions: [], 
-      quizzes: [],
+    const deckId = props.deckId
+    const card = {
+      question: question, 
+      answer: answer
     }
-
-     // Update Redux
-     props.dispatch(addDeck({
-      [deckId]: deck
-    }))
-  
-    // Add AsyncStorage
-    submitDeck({ deckId, deck })
-      .then(
-        props.navigation.navigate(
-          'DeckDetail', 
-          { deckId: deck.title }
-        )
-      )
-    
+    props.dispatch(addCard(deckId, card))
+    submitCard({ deckId, card })
     closeModal()
   }
 
@@ -69,15 +55,23 @@ const AddDeck = (props) => {
             size={25}
             onPress={() => closeModal()}
           />
-          <Title style={styles.titleStyle}>Enter title of your new Deck</Title>
+          <Title style={styles.titleStyle}>Enter the Q&A for your Card</Title>
             <TextInput
               mode='outlined'
-              label='Title'
-              value={deckName}
-              onChangeText={text => setDeckName(text)}
+              label='Question'
+              multiline={false}
+              value={question}
+              onChangeText={text => setQuestion(text)}
             />
-            <Button color={primaryColor} style={styles.createButton} disabled={deckName === "" ? true : false} mode="contained" onPress={() => handleSubmit()}>
-              Create Desk
+             <TextInput
+              mode='outlined'
+              label='Answer'
+              multiline={false}
+              value={answer}
+              onChangeText={text => setAnswer(text)}
+            />
+            <Button color={primaryColor} style={styles.createButton} disabled={question === ''  || answer === ''? true : false} mode="contained" onPress={() => handleSubmit()}>
+              Add Card
             </Button>
           </View>
         </KeyboardAvoidingView>
@@ -131,4 +125,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default connect()(AddDeck)
+export default connect()(AddCard)
