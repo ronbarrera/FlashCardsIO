@@ -85,7 +85,7 @@ class QuizTab extends Component {
             <Title>Avergare Score</Title>
             <FlashProgressBar progress={average} />
           </View>
-          <Button style={{margin: 20}} onPress={() => this.handleTakeQuiz(decks[index].title)}>Take New Quiz</Button>
+          <Button style={{margin: 20}} disabled={decks[index].questions.length === 0} onPress={() => this.handleTakeQuiz(decks[index].title)}>{decks[index].questions.length === 0 ? "No Cards in Deck" : "Take New Quiz"}</Button>
         </View>   
       </View>
     )
