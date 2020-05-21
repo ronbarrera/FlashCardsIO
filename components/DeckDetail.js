@@ -21,7 +21,7 @@ class DeckDetail extends Component {
   }
 
   componentDidMount() {
-    const {deckId, deck } = this.props
+    const {deckId } = this.props
     this.props.navigation.setOptions({
       title: `${deckId} Deck`, 
       headerRight: () => (
@@ -49,7 +49,6 @@ class DeckDetail extends Component {
       "Are you sure you want to delete the deck and questions?",
       [{
         text: "Cancel",
-        onPress: () => console.log("Cancel delete"),
         style: "cancel"
         },
         { text: "Delete", onPress: this.deleteDeck }
@@ -72,13 +71,6 @@ class DeckDetail extends Component {
     )
   }
 
-  onScroll = (event) => {
-    var currentOffset = event.nativeEvent.contentOffset.y;
-        var direction = currentOffset > this.offset ? 'down' : 'up';
-    this.offset = currentOffset;
-    console.log(direction)
-  }
-
   render() {
     const { deckId, deck } = this.props
     const { modalVisible } = this.state
@@ -95,7 +87,7 @@ class DeckDetail extends Component {
             source={require('../assets/card.png')}
           />
           <Title style={{fontWeight: 'bold', padding:10}}>No Cards Yet!</Title>
-          <Paragraph style={{padding: 5}}>Once you add a Card, you'll see them here. </Paragraph>
+          <Paragraph style={{padding: 5}}>Once you add Cards, you'll see them here. </Paragraph>
           <Button 
             uppercase={false} 
             mode="text" 

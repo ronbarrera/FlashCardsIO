@@ -13,7 +13,6 @@ import { fetchDeckResults } from '../utils/api'
 class DeckTab extends Component {
   state = {
     visible: false,
-    filterBy: 'Recent',
     modalVisible: false, 
     loading: true,
   }
@@ -29,18 +28,13 @@ class DeckTab extends Component {
   _openMenu = () => this.setState({ visible: true });
   _closeMenu = () => this.setState({ visible: false });
 
-  handleFilterBy(filterBy)  {
-    this.setState({filterBy})
-    this._closeMenu()
-  }
-
   setModalVisible = (visible) => {
     this.setState({ modalVisible: visible });
   }
 
   render() {
     const  { decks }  = this.props
-    const { filterBy, modalVisible, loading } = this.state
+    const { modalVisible, loading } = this.state
 
     if (loading === true) {
       return <ActivityIndicator style={{marginTop: 50}} />

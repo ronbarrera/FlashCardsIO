@@ -11,7 +11,7 @@ export default function FlashProgressBar ({ progress }) {
       <View style={{ flex: 1 }}>
         <ProgressBar style={{height: 25, borderRadius: 10}} progress={ progress } color={lightPurple} />
         <View style={styles.labelContainer}>
-          <Text style={{color: white, fontWeight: 'bold'}}>{progress * 100 + '%'}</Text>
+          <Text style={{color: white, fontWeight: 'bold'}}>{(progress * 100).toFixed(1) + '%'}</Text>
         </View>
       </View>
       <Caption style={styles.caption}>100%</Caption>

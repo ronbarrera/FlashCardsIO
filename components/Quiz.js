@@ -22,9 +22,6 @@ class Quiz extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('insinde componentDidUpdate')
-    console.log(prevState)
-    console.log(this.state)
     if (prevState.page === this.state.total) 
       this.handleSave()
   }
@@ -153,7 +150,6 @@ class Quiz extends Component {
 
   render() {
     const { page, total } = this.state
-    console.log(this.props.deck)
     return (
       <View style={styles.container}>
        { page === 0 ? this.startPageUI() : page === total + 1 ? this.endPageUI() : this.questionPageUI()}

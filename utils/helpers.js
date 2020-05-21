@@ -1,10 +1,3 @@
-export function timeToString (time = Date.now()) {
-  const date = new Date(time)
-  console.log(date.getMinutes())
-  const todayUTC = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
-  return todayUTC.toISOString().split('T')[0]
-}
-
 export function shuffle (array) {
   var newArray = [...array]
   var m = newArray.length, t, i;
