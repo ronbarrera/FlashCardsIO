@@ -65,30 +65,28 @@ class QuizTab extends Component {
         <View style={styles.toolbar}>
           <Text style={styles.headerText}>My Stats</Text>
         </View>
-        <ScrollView>
-          <View style={styles.content}>
-            <Headline style={{alignSelf: 'center'}}>Choose Your Deck</Headline>
-            <Picker
-              style={{margin: 5}}
-              selectedValue={decks[index].title}
-              onValueChange={(itemValue, itemIndex) =>
-                this.setState({index: itemIndex})
-              }>
-              {decks.map((deck, index) =>
-                <Picker.Item label={deck.title} key={index} value={deck.title} /> )}
-            </Picker>
-            <View >
-              <Title style={{alignSelf: 'center'}}>{numQuizzes} Quiz Taken</Title>
-              <Title>Highest Score</Title>
-              <FlashProgressBar progress={highestScore} />
-              <Title>Lowest Score</Title>
-              <FlashProgressBar progress={lowestScore} />
-              <Title>Avergare Score</Title>
-              <FlashProgressBar progress={average} />
-            </View>
-            <Button style={{margin: 20}} onPress={() => this.handleTakeQuiz(decks[index].title)}>Take New Quiz</Button>
-          </View>   
-        </ScrollView>
+        <View style={styles.content}>
+          <Headline style={{alignSelf: 'center'}}>Choose Your Deck</Headline>
+          <Picker
+            style={{margin: 5}}
+            selectedValue={decks[index].title}
+            onValueChange={(itemValue, itemIndex) =>
+              this.setState({index: itemIndex})
+            }>
+            {decks.map((deck, index) =>
+              <Picker.Item label={deck.title} key={index} value={deck.title} /> )}
+          </Picker>
+          <View >
+            <Title style={{alignSelf: 'center'}}>{numQuizzes} Quiz Taken</Title>
+            <Title>Highest Score</Title>
+            <FlashProgressBar progress={highestScore} />
+            <Title>Lowest Score</Title>
+            <FlashProgressBar progress={lowestScore} />
+            <Title>Avergare Score</Title>
+            <FlashProgressBar progress={average} />
+          </View>
+          <Button style={{margin: 20}} onPress={() => this.handleTakeQuiz(decks[index].title)}>Take New Quiz</Button>
+        </View>   
       </View>
     )
   }
