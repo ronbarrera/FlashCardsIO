@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, Picker, StyleSheet, Image } from 'react-native'
+import { View, Text, Picker, StyleSheet, Image, ScrollView } from 'react-native'
 import { primaryColor } from '../utils/colors'
 import { Headline, Title, Paragraph, Button } from 'react-native-paper'
 import FlashProgressBar from './FlashProgressBar'
@@ -65,28 +65,30 @@ class QuizTab extends Component {
         <View style={styles.toolbar}>
           <Text style={styles.headerText}>My Stats</Text>
         </View>
-        <View style={styles.content}>
-          <Headline style={{alignSelf: 'center'}}>Choose Your Deck</Headline>
-          <Picker
-            style={{margin: 20}}
-            selectedValue={decks[index].title}
-            onValueChange={(itemValue, itemIndex) =>
-              this.setState({index: itemIndex})
-            }>
-            {decks.map((deck, index) =>
-              <Picker.Item label={deck.title} key={index} value={deck.title} /> )}
-          </Picker>
-          <View >
-            <Title style={{alignSelf: 'center'}}>{numQuizzes} Quiz Taken</Title>
-            <Title>Highest Score</Title>
-            <FlashProgressBar progress={highestScore} />
-            <Title>Lowest Score</Title>
-            <FlashProgressBar progress={lowestScore} />
-            <Title>Avergare Score</Title>
-            <FlashProgressBar progress={average} />
-          </View>
-          <Button style={{margin: 20}} onPress={() => this.handleTakeQuiz(decks[index].title)}>Take New Quiz</Button>
-        </View>   
+        <ScrollView>
+          <View style={styles.content}>
+            <Headline style={{alignSelf: 'center'}}>Choose Your Deck</Headline>
+            <Picker
+              style={{margin: 5}}
+              selectedValue={decks[index].title}
+              onValueChange={(itemValue, itemIndex) =>
+                this.setState({index: itemIndex})
+              }>
+              {decks.map((deck, index) =>
+                <Picker.Item label={deck.title} key={index} value={deck.title} /> )}
+            </Picker>
+            <View >
+              <Title style={{alignSelf: 'center'}}>{numQuizzes} Quiz Taken</Title>
+              <Title>Highest Score</Title>
+              <FlashProgressBar progress={highestScore} />
+              <Title>Lowest Score</Title>
+              <FlashProgressBar progress={lowestScore} />
+              <Title>Avergare Score</Title>
+              <FlashProgressBar progress={average} />
+            </View>
+            <Button style={{margin: 20}} onPress={() => this.handleTakeQuiz(decks[index].title)}>Take New Quiz</Button>
+          </View>   
+        </ScrollView>
       </View>
     )
   }
@@ -99,7 +101,6 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     justifyContent: 'center',
-    marginTop: -75,
     padding: 20
   },
   toolbar: {
