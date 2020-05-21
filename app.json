@@ -10,6 +10,9 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "notification": {
+      "icon": "./assets/notifIcon.png"
+    },
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -22,7 +25,11 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.ronaldbarrera.flashcardsio",
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.ronaldbarrera.flashcardsio"
     }
   },
   "name": "FlashCardsIO"

@@ -2,7 +2,11 @@ import React, { Component } from 'react'
 import { Image, Text, View, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { saveQuizResult } from '../actions'
-import { shuffle } from '../utils/helpers'
+import { 
+  shuffle,   
+  clearLocalNotification, 
+  setLocalNotification  
+} from '../utils/helpers'
 import { Title, Paragraph, Button, Caption, Chip } from 'react-native-paper'
 import { primaryColor, red, green } from '../utils/colors'
 import QuizCard from './QuizCard'
@@ -122,6 +126,8 @@ class Quiz extends Component {
     }
     this.props.dispatch(saveQuizResult(deckId, quiz))
     submitQuiz({deckId, quiz})
+
+    clearLocalNotification().then(setLocalNotification)
   }
 
   handleTryAgain = () => {
